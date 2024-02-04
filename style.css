@@ -58,6 +58,78 @@ ul {
 }
 
 /*=============== START COMPONENTS ===============*/
+.main-title {
+    position: relative;
+    border: 2px solid black;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 100px auto;
+    text-transform: uppercase;
+    font-size: 25px;
+    transition: var(--main-transition);
+}
+
+.main-title:hover {
+    color: white;
+    transition-delay: 0.5s;
+}
+.main-title::before,
+.main-title::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--main-color-alt);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.main-title::before {
+    left: -30px;
+}
+
+.main-title:hover::before {
+    animation: left-to-right 0.5s linear forwards;
+    z-index: -1;
+}
+
+.main-title::after {
+    right: -30px;
+}
+
+.main-title:hover::after {
+    animation: right-to-left 0.5s linear forwards;
+    z-index: -1;
+}
+
+/* Animation */
+@keyframes left-to-right {
+    50% {
+        width: 12px;
+        height: 12px;
+        left: 0;
+    }
+    100% {
+        border-radius: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+    }
+}
+@keyframes right-to-left {
+    50% {
+        width: 12px;
+        height: 12px;
+        right: 0;
+    }
+    100% {
+        border-radius: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+    }
+}
 
 /*=============== HEADER ===============*/
 header {
