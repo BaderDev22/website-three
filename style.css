@@ -59,13 +59,14 @@ ul {
 
 /*=============== START COMPONENTS ===============*/
 .main-title {
-    position: relative;
-    border: 2px solid black;
-    width: fit-content;
-    padding: 10px 20px;
-    margin: 100px auto;
     text-transform: uppercase;
-    font-size: 25px;
+    margin: 0 auto 80px;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 30px;
+    width: fit-content;
+    position: relative;
+    z-index: 1;
     transition: var(--main-transition);
 }
 
@@ -76,11 +77,11 @@ ul {
 .main-title::before,
 .main-title::after {
     content: "";
-    position: absolute;
     width: 12px;
     height: 12px;
+    background-color: var(--main-color);
+    position: absolute;
     border-radius: 50%;
-    background-color: var(--main-color-alt);
     top: 50%;
     transform: translateY(-50%);
 }
@@ -310,16 +311,6 @@ header .mega-menu .links li a i {
     margin-right: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
 /*=============== LANDING ===============*/
 .landing {
     position: relative;
@@ -408,10 +399,231 @@ header .mega-menu .links li a i {
     }
 }
 
+.landing .scroll {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--main-color);
+    transition: var(--main-transition);
+}
+
+.landing .scroll i {
+    animation: bouncing 1.5s infinite;
+
+}
+
+/* Animation */
+@keyframes bouncing {
+    0%, 10%, 20%, 50%, 80%, 100% {
+        transform: translateY(0px);
+    }
+    40%,
+    60% {
+        transform: translateY(20px);
+    }
+}
+
+/*=============== ARTICLES ===============*/
+.articles {
+    padding-top: var(--main-padding-bottom);
+    padding-bottom: var(--main-padding-bottom);
+}
+
+.articles .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.articles .container .box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    transition: transform var(--main-transition), box-shadow var(--main-transition);
+    overflow: hidden;
+}
+
+.articles .container .box:hover {
+    box-shadow: 0 0 10px 10px #ddd;
+    transform: translateY(-10px);
+}
+
+.articles .container .box img {
+    max-width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.articles .container .box .text {
+    padding: 20px;
+}
+
+.articles .container .box .text h4 {
+    font-size: 17px;
+    margin: 0;
+}
+
+.articles .container .box .text p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #777;
+}
+
+.articles .container .box a {
+    position: relative;
+    display: block;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--main-color);
+    border-top: 1px solid #ddd;
+}
+
+.articles .container .box a::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f30b";
+    position: absolute;
+    font-weight: bold;
+    top: 23px;
+    right: 20px;
+    font-size: 14px;
+}
+
+.articles .container .box:hover a::after {
+    animation: to-right 1s infinite;
+}
+
+/* Animation */
+@keyframes to-right {
+    0% {
+        right: 20px;
+    }
+    100% {
+        right: 5px;
+    }
+}
+
+/*=============== GALLERY ===============*/
+.gallery {
+    padding-top: var(--main-padding-bottom);
+    padding-bottom: var(--main-padding-bottom);
+    background-color: var(--section-background);
+}
+
+.gallery .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.gallery .box {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 10px 10px #ddd;
+}
+
+.gallery .box .image {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery .box .image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: hsl(0deg 0% 100% / 29%);
+    transition: var(--main-transition);
+    z-index: 2;
+}
+
+.gallery .box .image:hover::before {
+    animation: flashing 0.6s;
+}
+/* Animation */
+@keyframes flashing {
+    0%,
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 200%;
+        height: 200%;
+    }
+}
+
+.gallery .box .image img {
+    max-width: 100%;
+    transition: var(--main-transition);
+}
+
+.gallery .box .image:hover img {
+    transform: rotate(2deg) scale(1.1);
+}
+
+/*=============== FEATURES ===============*/
+.features {
+    padding-top: var(--main-padding-bottom);
+    padding-bottom: var(--main-padding-bottom);
+    position: relative;
+}
+
+.features .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.features .box {
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.features .box .image-holder {
+    position: relative;
+
+}
+
+.features .box .image-holder::before {
+    content: '';
+    position: absolute;
+}
+
+.features .box .image-holder::after {
+    content: '';
+    position: absolute;
+}
+
+.features .box .image-holder img {
+    max-width: 100%;
+}
+
+.features .box .text {
+    padding: 20px;
+}
+
+.features .box .text h2 {
+
+}
+
+.features .box .text p {
+
+}
+
+
 
 
 
 
 /*===============  ===============*/
+/*===============  ===============*/
+/*===============  ===============*/
+
 /*===============  ===============*/
 /*===============  ===============*/
